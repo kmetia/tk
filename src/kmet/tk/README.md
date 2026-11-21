@@ -106,6 +106,7 @@ without Termux:X11; on Termux, jolt (bionic) can use the system Tcl/Tk
 while the glibc babashka build needs a glibc Tcl/Tk.
 
 ```sh
+# from the kmet-agent checkout:
 bb scripts/demos/gui_tk_demo.clj       # opens a small demo window
 jolt scripts/demos/gui_tk_demo.clj     # the same on Jolt
 ```
@@ -130,8 +131,8 @@ menubutton message panedwindow radiobutton scale scrollbar spinbox text
 toplevel` and the themed `ttk::button
 checkbutton combobox entry frame label labelframe menubutton notebook
 panedwindow progressbar radiobutton scale scrollbar separator sizegrip
-spinbox toggleswitch treeview`. `scripts/bench/tk_option_audit.clj` reports
-that coverage against a live Tk.
+spinbox toggleswitch treeview`. `scripts/bench/tk_option_audit.clj` (in the
+kmet-agent checkout) reports that coverage against a live Tk.
 
 Three shapes of tag, on top of the plain leaves:
 
@@ -741,7 +742,8 @@ fractions, a canvas `:bind` keeping a drag's coordinates past the item's
 edge, a posted menu's `-postcommand`, and a labelframe's label widget read
 back with `cget -labelwidget`.
 
-`scripts/bench/tk_option_audit.clj` (bb, needs Tcl/Tk and a display) enumerates
+`scripts/bench/tk_option_audit.clj` (in the kmet-agent checkout; bb, needs
+Tcl/Tk and a display) enumerates
 the interpreter's widget classes and their options and diffs them against
 the tag table: the options a tag declares that its widget lacks, and the
 options it does not reach yet. `kmet.tk.test-tcl`'s
@@ -762,7 +764,8 @@ families in `kmet.tk.options` (see *Options* above), and its script-typed
 options are the tag's binding slots (validation, the scroll commands,
 `-postcommand`); the cross-widget options are reached through the tag that
 owns them (a menubutton's `:items`, a menu's `:menubar`, a labelframe
-child's `:labelwidget`), and `scripts/bench/tk_option_audit.clj` reports what is
+child's `:labelwidget`), and `scripts/bench/tk_option_audit.clj` (in the
+kmet-agent checkout) reports what is
 still missing against a live Tk. kmet's own widgets are the `:ui/…` set in
 `kmet.gui-sample.ui` (today `:ui/transcript`, the chat scroll container).
 

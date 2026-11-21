@@ -1,0 +1,14 @@
+{:paths ["src" "test"]
+ :deps {kmet/hikap {:local/root "../hikap"}
+        kmet/reakt {:local/root "../reakt"}}
+ :tasks
+ {test {:doc "Run the tk suite"
+        :task (let [run-tests (requiring-resolve 'clojure.test/run-tests)
+                    nss '[kmet.tk.test-tk
+                          kmet.tk.test-tcl
+                          kmet.tk.test-ttk-style
+                          kmet.gui-sample.test-ui]]
+                (doseq [ns-sym nss] (require ns-sym))
+                (let [{:keys [fail error]} (apply run-tests nss)]
+                  (when (pos? (+ fail error))
+                    (System/exit 1))))}}}

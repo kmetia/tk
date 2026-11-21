@@ -13,9 +13,9 @@
    and no app module depends on Tk: one widget (`:ui/transcript`, a scroll
    container that embeds its children as text windows) and no app content,
    theme or renderer. It demonstrates the extra-tag seam an app UI builds on;
-   `scripts/demos/gui_tk_demo.clj` shows the plain backend without it.
-   Staged groundwork for the `ui-tk` service
-   (modules/app/src/kmet/design.md § Not doing)."
+   `scripts/demos/gui_tk_demo.clj` in the kmet-agent checkout shows the plain
+   backend without it. Staged groundwork for the `ui-tk` service (the
+   kmet-agent app design record, § Not doing)."
   (:require [kmet.tk.core :as tk]
             [kmet.tk.dsl :as dsl]
             [kmet.tk.options :as opt])

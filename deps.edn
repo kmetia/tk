@@ -1,6 +1,11 @@
-{:paths ["src" "test"]
- ;; The Tcl adapter's FFI seam is the host's (babashka.ffi on babashka and the
- ;; JVM via the :jvm alias's org.babashka/ffi, jolt.ffi on Jolt), so it is not
- ;; a module dep. The hikap library is an external pinned dependency at the
- ;; root. babashka.fs walks this module's files.
- :deps {babashka/fs {:mvn/version "0.5.34"}}}
+{:paths ["src"]
+ ;; hikap is the hiccup engine; babashka.fs locates the Tcl/Tk libraries.
+ :deps {babashka/fs {:mvn/version "0.5.34"}
+        kmet/hikap {:git/url "https://github.com/kmetia/hikap.git"
+                    :git/sha "f9db3d61ae0d0bc9dbaee1d47158e56daecfb2c6"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :override-deps {kmet/hikap {:local/root "../hikap"}
+                         kmet/reakt {:local/root "../reakt"}}
+         ;; The standalone JVM FFI; babashka bundles it and Jolt has jolt.ffi.
+         :extra-deps {org.babashka/ffi {:mvn/version "0.1.3"}}}}}
